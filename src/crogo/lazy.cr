@@ -79,7 +79,7 @@ module Crogo
       end
 
       def {{"init_#{name.id}".id}}(val=nil)
-        val = val as {{type.id}} unless val.nil?
+        val = val.as({{type.id}}) unless val.nil?
         new_attr = Crogo::Attribute({{type.id}}).new("{{name.id}}", val, {{required}}, {{default}})
         attributes[{{name}}] = new_attr
       end
@@ -93,13 +93,13 @@ module Crogo
           if(val.nil?)
             nil
           else
-            val as {{type.id}}
+            val.as({{type.id}})
           end
         end
       end
 
       def {{"#{name.id}=".id}}(val : {{type.id}}?) : {{type.id}}?
-        l_attr = attributes[{{name}}] as Crogo::Attribute({{type.id}})
+        l_attr = attributes[{{name}}].as(Crogo::Attribute({{type.id}}))
         if(val.nil?)
           l_attr.unset
         else

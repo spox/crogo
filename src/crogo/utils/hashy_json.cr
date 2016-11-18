@@ -35,6 +35,8 @@ module Crogo
               val.as_h
             when :integer
               val.as_i
+            when :any
+              val
             else
               raise "Invalid data type defined for casting `#{type}`"
             end

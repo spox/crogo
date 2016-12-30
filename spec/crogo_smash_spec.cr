@@ -22,6 +22,11 @@ describe Crogo::Smash do
     smash.get(:hash, :hkey, type: :string).should eq("hvalue")
   end
 
+  it "should set values deeply in smash" do
+    smash = Smash.new
+    smash.set("a", "b", "c", value: true)
+  end
+
   it "should deep merge two smashes" do
     base = {"key" => "value"} of String => Hash(String, String) | String
     base["nested"] = {"nkey" => "nvalue"} of String => String

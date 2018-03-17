@@ -1,7 +1,5 @@
 module Crogo
   class Error < Exception
-
-    class RequiredValue < Exception; end;
-
+    class RequiredValue < Exception; end
   end
 end

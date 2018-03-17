@@ -1,7 +1,6 @@
 require "./spec_helper"
 
 describe Crogo::Smash do
-
   it "should create a new smash" do
     value = {"key" => "value"} of String => String
     smash = value.to_smash
@@ -51,5 +50,4 @@ describe Crogo::Smash do
     result = Crogo::Smash.deep_merge(b_smash, o_smash)
     result["nested"].should eq("avalue")
   end
-
 end

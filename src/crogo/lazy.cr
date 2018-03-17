@@ -1,5 +1,4 @@
 module Crogo
-
   class Attribute(T)
     property name : String
     property required : Bool = false
@@ -10,19 +9,19 @@ module Crogo
 
     def initialize(@name : String, @value : T? = nil, @required : Bool = false, @default : Proc(T)? | T? = nil)
       defaulter = @default
-      if(@value.nil? && defaulter)
+      if (@value.nil? && defaulter)
         @value = defaulter.is_a?(Proc) ? defaulter.call : defaulter
       end
-      if(@required && @value.nil?)
+      if (@required && @value.nil?)
         raise Error::RequiredValue.new("Required value not set! (Attribute name `#{name}`)")
       end
-      unless(@value.nil?)
+      unless (@value.nil?)
         @original = @value
       end
     end
 
     def unset
-      if(required)
+      if (required)
         raise Error::RequiredValue.new("Cannot unset required value! (Attribute name `#{name}`)")
       else
         @value = nil
@@ -49,17 +48,15 @@ module Crogo
     def get : T?
       @value
     end
-
   end
 
   module Lazy
-
     alias LAZY_TYPES = String | Int8 | Int32 | Int64 | UInt8 | UInt32 | UInt64 | Float32 | Float64 | Bool | Time
 
     macro included
       @@attributes = [] of Symbol
       @@initers = {} of String => Proc(self, Crogo::Lazy::LAZY_TYPES?, Nil)
-      {% types = [String, Int8, Int32, Int64, UInt8, UInt32, UInt64, Float32, Float64, Bool, Time].map{|x| "Crogo::Attribute(#{x})"}.join(" | ") %}
+      {% types = [String, Int8, Int32, Int64, UInt8, UInt32, UInt64, Float32, Float64, Bool, Time].map { |x| "Crogo::Attribute(#{x})" }.join(" | ") %}
       {{"property attributes = {} of Symbol => #{types.id}".id}}
 
       def self.attributes
@@ -133,6 +130,5 @@ module Crogo
       end
 
     end
-
   end
 end

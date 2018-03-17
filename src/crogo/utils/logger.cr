@@ -1,7 +1,6 @@
 module Crogo
   module Utils
     module Logger
-
       # @return [Logger] application logger instance
       def logger
         Crogo.logger
@@ -41,7 +40,6 @@ module Crogo
       def fatal(m : String)
         logger.fatal "[#{self}] - #{m}"
       end
-
     end
   end
 end

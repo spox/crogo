@@ -1,7 +1,6 @@
 module Crogo
   module Utils
     module HashyJson
-
       macro included
         {{"@data = {} of String => JSON::Type".id}}
         {{"getter :data".id}}
@@ -21,7 +20,7 @@ module Crogo
             break unless value
             JSON::Any.new(value)
           end
-          if(val)
+          if (val)
             case type
             when :string
               val.as_s
@@ -54,7 +53,7 @@ module Crogo
           final_key = keys.last
           context = keys.to_a[0, keys.size - 1].reduce(data) do |memo, key|
             result = memo.as(Hash(String, JSON::Type)).fetch(key.to_s, nil)
-            if(result.nil?)
+            if (result.nil?)
               result = {} of String => JSON::Type
               memo.as(Hash(String, JSON::Type))[key.to_s] = result
             end
@@ -76,7 +75,6 @@ module Crogo
           end
           new_hash
         end
-
       end
     end
   end

@@ -4,7 +4,6 @@ require "./crogo/utils"
 require "./crogo/*"
 
 module Crogo
-
   @@logger = ::Logger.new(STDOUT)
 
   # Set a new logger instance
@@ -19,5 +18,4 @@ module Crogo
   def self.logger
     @@logger
   end
-
 end

@@ -8,7 +8,7 @@ class LazyTest
   end
 
   attribute :simple_string, String
-  attribute :simple_defaulted, String, default: ->{"omg"}
+  attribute :simple_defaulted, String, default: ->{ "omg" }
 end
 
 class LazyRequired
@@ -22,9 +22,7 @@ class LazyRequired
   attribute :required_string_defaulted, String, required: true, default: "value"
 end
 
-
 describe Crogo::Lazy do
-
   it "should have a simple_string attribute" do
     t = LazyTest.new
     t.simple_string = "hi"
@@ -111,5 +109,4 @@ describe Crogo::Lazy do
     t.clean!
     t.dirty?.should be_false
   end
-
 end

@@ -1,7 +1,6 @@
 require "./spec_helper"
 
 describe Crogo do
-
   it "should provide a default logger" do
     Crogo.logger.should be_a(Logger)
   end
@@ -12,5 +11,4 @@ describe Crogo do
     Crogo.logger = new_logger
     Crogo.logger.should eq(new_logger)
   end
-
 end

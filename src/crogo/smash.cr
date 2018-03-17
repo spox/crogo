@@ -1,6 +1,5 @@
 module Crogo
   class Smash
-
     include Crogo::Utils::HashyJson
 
     # @return [Hash(String, JSON::Type)]
@@ -17,17 +16,17 @@ module Crogo
     # @param val [Object]
     # @return [JSON::Type]
     def self.value_convert(val) : JSON::Type
-      if(val.is_a?(Hash))
+      if (val.is_a?(Hash))
         new_val = {} of String => JSON::Type
         val.keys.each do |k|
           new_val[k.to_s] = value_convert(val[k])
         end
-      elsif(val.is_a?(Smash))
+      elsif (val.is_a?(Smash))
         new_val = {} of String => JSON::Type
         val.keys.each do |k|
           new_val[k.to_s] = value_convert(val[k])
         end
-      elsif(val.is_a?(Array))
+      elsif (val.is_a?(Array))
         new_val = Array(JSON::Type).new
         val.each do |item|
           new_val.push(value_convert(item))
@@ -57,10 +56,10 @@ module Crogo
       original.keys.each do |okey|
         base = original[okey]
         base = base.unsmash if base.is_a?(Smash)
-        if(overlay.has_key?(okey))
+        if (overlay.has_key?(okey))
           over = overlay[okey]
           over = over.unsmash if over.is_a?(Smash)
-          if(base.is_a?(Hash) && over.is_a?(Hash))
+          if (base.is_a?(Hash) && over.is_a?(Hash))
             result[okey] = deep_merge(base.to_smash, over.to_smash).unsmash
           else
             result[okey] = over
@@ -76,7 +75,6 @@ module Crogo
       end
       result
     end
-
   end
 end
 
@@ -98,7 +96,6 @@ class Hash
     end
     result
   end
-
 end
 
 Smash = Crogo::Smash
